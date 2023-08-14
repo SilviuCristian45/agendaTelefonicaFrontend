@@ -16,7 +16,16 @@
         const contactDetailContainer = document.getElementById('contactDetailContainer')
 
         fetch(`http://localhost:5000/contacts/${contactId}`).then( resp => resp.json().then( contact => {
-            console.log(contact)
+            fillContactDataUI(contact)
+        })).catch(err => {
+            const contacts = JSON.parse(localStorage.getItem("contacts"))
+            if (!contacts) return
+            const contactToDisplay = contacts.filter(contact => contact.id == contactId)[0]
+            if (!contactToDisplay) return
+            fillContactDataUI(contactToDisplay)
+        })
+
+        function fillContactDataUI(contact) {
             const name = document.createElement('div')
             name.innerHTML = '<i class="fa-solid fa-address-book"></i> ' + contact.Name
             name.id = 'Name'
@@ -30,32 +39,7 @@
             contactDetailContainer.appendChild(name)
             contactDetailContainer.appendChild(phone)
             contactDetailContainer.appendChild(description)
-        })).catch(err => {
-            console.log(err)
-            const contacts = JSON.parse(localStorage.getItem("contacts"))
-
-            if (!contacts) return
-
-            const contactToDisplay = contacts.filter(contact => contact.id == contactId)[0]
-            
-            console.log(contactToDisplay)
-
-            if (!contactToDisplay) return
-
-            const name = document.createElement('div')
-            name.innerHTML = '<i class="fa-solid fa-address-book"></i> ' + contactToDisplay.Name
-            name.id = 'Name'
-            const phone = document.createElement('div')
-            phone.innerHTML = '<i class="fa-solid fa-phone"></i> ' + contactToDisplay.Phone
-            phone.id = 'Phone'
-            const description = document.createElement('div')
-            description.id = 'Description'
-            description.innerHTML = '<i class="fa-solid fa-file-lines"></i> ' + contactToDisplay.Description
-
-            contactDetailContainer.appendChild(name)
-            contactDetailContainer.appendChild(phone)
-            contactDetailContainer.appendChild(description)
-        })
+        }
     </script>
 </body>
 </html>
