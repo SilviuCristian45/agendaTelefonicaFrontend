@@ -2,23 +2,15 @@ const container = document.getElementById("container")
 let contactsDisplayed = []
 
 fetchContacts().then( contacts => {
-        contacts.forEach( element => 
-            container.appendChild(createContactView(element))  
-        )
-        contactsDisplayed = [...contacts]
-        //caching
-        localStorage.setItem("contacts", JSON.stringify(contacts))
-    }
-).catch(err => {
+    contacts.forEach( element => container.appendChild(createContactView(element)))
+    contactsDisplayed = [...contacts]
+    localStorage.setItem("contacts", JSON.stringify(contacts))
+}).catch(err => {
     console.log(err)
     const cachedContacts = JSON.parse(localStorage.getItem("contacts"))
-    if (!cachedContacts) {
-        return
-    }
+    if (!cachedContacts) return
     console.log(cachedContacts)
-    cachedContacts.forEach( element => 
-        container.appendChild(createContactView(element))  
-    )
+    cachedContacts.forEach(element => container.appendChild(createContactView(element)))
     contactsDisplayed = [...cachedContacts]
 })
 
@@ -47,13 +39,9 @@ document.getElementById('searchContactBtn').onclick = () => {
     let name = document.getElementById('Name').value
     let phone = document.getElementById('Phone').value
 
-    contactsDisplayed = contactsDisplayed.filter( el => {
-        return el.Name.includes(name) || el.Phone.includes(phone)
-    })
+    contactsDisplayed = contactsDisplayed.filter( el =>el.Name.includes(name) || el.Phone.includes(phone) )
     container.innerHTML = "";
-    contactsDisplayed.forEach( element => 
-        container.appendChild(createContactView(element))  
-    )
+    contactsDisplayed.forEach(element => container.appendChild(createContactView(element)))
 }
 
 async function fetchContacts() {
