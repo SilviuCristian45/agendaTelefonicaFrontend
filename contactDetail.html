@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact detail</title>
+    <script src="https://kit.fontawesome.com/dd0107652a.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="contactDetail.css">
+</head>
+<body>
+    <div id="contactDetailContainer"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const contactId = urlParams.get('id');
+        const contactDetailContainer = document.getElementById('contactDetailContainer')
+
+        fetch(`http://localhost:5000/contacts/${contactId}`).then( resp => resp.json().then( contact => {
+            console.log(contact)
+            const name = document.createElement('div')
+            name.innerHTML = '<i class="fa-solid fa-address-book"></i> ' + contact.Name
+            name.id = 'Name'
+            const phone = document.createElement('div')
+            phone.innerHTML = '<i class="fa-solid fa-phone"></i> ' + contact.Phone
+            phone.id = 'Phone'
+            const description = document.createElement('div')
+            description.id = 'Description'
+            description.innerHTML = '<i class="fa-solid fa-file-lines"></i> ' + contact.Description
+
+            contactDetailContainer.appendChild(name)
+            contactDetailContainer.appendChild(phone)
+            contactDetailContainer.appendChild(description)
+        })).catch(err => {
+            console.log(err)
+            const contacts = JSON.parse(localStorage.getItem("contacts"))
+
+            if (!contacts) return
+
+            const contactToDisplay = contacts.filter(contact => contact.id == contactId)[0]
+            
+            console.log(contactToDisplay)
+
+            if (!contactToDisplay) return
+
+            const name = document.createElement('div')
+            name.innerHTML = '<i class="fa-solid fa-address-book"></i> ' + contactToDisplay.Name
+            name.id = 'Name'
+            const phone = document.createElement('div')
+            phone.innerHTML = '<i class="fa-solid fa-phone"></i> ' + contactToDisplay.Phone
+            phone.id = 'Phone'
+            const description = document.createElement('div')
+            description.id = 'Description'
+            description.innerHTML = '<i class="fa-solid fa-file-lines"></i> ' + contactToDisplay.Description
+
+            contactDetailContainer.appendChild(name)
+            contactDetailContainer.appendChild(phone)
+            contactDetailContainer.appendChild(description)
+        })
+    </script>
+</body>
+</html>
