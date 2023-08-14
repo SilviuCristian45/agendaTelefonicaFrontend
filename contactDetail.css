@@ -1,0 +1,19 @@
+#contactDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    border: 1px solid black;
+}
+
+#Name {
+    font-family: 'Didact Gothic';font-size: 50px;
+}
+
+#Phone {
+    font-family: 'Didact Gothic';font-size: 30px;
+}
+
+#Description {
+    font-family: 'Didact Gothic';font-size: 25px;
+}

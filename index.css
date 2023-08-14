@@ -1,0 +1,40 @@
+#container {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#container td, #container th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#agendaTitle {
+    padding: 10px;
+    font-size: large;
+}
+
+a {
+    text-decoration: none;
+}
+
+#contactForm {
+    padding-top: 20px;
+}
+
+#addContactBtn, #searchContactBtn {
+    background-color: #404540; /* Green */
+    border: 1px solid black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}

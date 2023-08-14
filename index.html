@@ -6,8 +6,26 @@
     <title>Agenda telefonica</title>
     <script src="contact.js"></script>
     <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="container"></div>
+    <div id="mainContainer">
+
+        <div id="agendaTitle"> Agenda telefonica </div>
+
+        <div id="contactForm">
+            <input type="text" name="" id="Name" placeholder="Name">
+            <input type="tel" name="" id="Phone" placeholder="Phone">
+            <input type="text" name="" id="Description" placeholder="Description">
+            <button id="addContactBtn"> Add contact </button>
+            <button id="searchContactBtn"> Search contact </button>
+        </div>
+    
+        <table id="container">
+            <tr> <th> Nume Contact </th> <th> Numar de telefon </th> </tr>
+        </table>
+    </div>
+
+    
 </body>
 </html>
