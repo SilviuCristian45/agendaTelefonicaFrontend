@@ -26,6 +26,14 @@ document.getElementById('addContactBtn').onclick = () => {
         return
     }
 
+    const phoneNumberRegex = /^(?:(?:\+|00)40|0)(?:(?:2[1-4]|3[1-9]|4[0-9]|5[1-9]|6[1-8]|7[1-9]|8[1-9]|9[1-8])[0-9]{7})$/;
+
+    console.log(newContact)
+    if (!phoneNumberRegex.test(newContact.phone)) {
+        alert('numarul de telefon nu e corect')
+        return
+    }
+
     fetch('http://localhost:5000/addContact', {
         method: 'POST',
         headers: {
