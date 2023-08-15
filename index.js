@@ -16,12 +16,12 @@ fetchContacts().then( contacts => {
 
 document.getElementById('addContactBtn').onclick = () => {
     const newContact = {
-        'name': document.getElementById('Name').value,
-        'phone': document.getElementById('Phone').value,
-        'description': document.getElementById('Description').value
+        'Name': document.getElementById('Name').value,
+        'Phone': document.getElementById('Phone').value,
+        'Description': document.getElementById('Description').value
     }
 
-    if (!newContact.name || !newContact.phone || !newContact.description) {
+    if (!newContact.Name || !newContact.Phone || !newContact.Description) {
         alert('nu lasati niciun camp gol')
         return
     }
@@ -29,7 +29,7 @@ document.getElementById('addContactBtn').onclick = () => {
     const phoneNumberRegex = /^(?:(?:\+|00)40|0)(?:(?:2[1-4]|3[1-9]|4[0-9]|5[1-9]|6[1-8]|7[1-9]|8[1-9]|9[1-8])[0-9]{7})$/;
 
     console.log(newContact)
-    if (!phoneNumberRegex.test(newContact.phone)) {
+    if (!phoneNumberRegex.test(newContact.Phone)) {
         alert('numarul de telefon nu e corect')
         return
     }
@@ -41,6 +41,16 @@ document.getElementById('addContactBtn').onclick = () => {
         },
         body: JSON.stringify(newContact)
     }).then( () => location.reload() )
+    .catch( () => {
+        //get contacts from localstorage
+        let contacts = JSON.parse(localStorage.getItem("contacts"))
+        if (!contacts) return
+        const lastContactId = contacts[contacts.length-1].id
+        newContact.id = lastContactId+1
+        contacts.push(newContact)
+        localStorage.setItem("contacts", JSON.stringify(contacts))
+        location.reload()
+    })
 }
 
 document.getElementById('searchContactBtn').onclick = () => {
