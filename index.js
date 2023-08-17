@@ -47,9 +47,10 @@ document.getElementById('searchContactBtn').onclick = () => {
     let name = document.getElementById('Name').value
     let phone = document.getElementById('Phone').value
 
-    contactsDisplayed = contactsDisplayed.filter( el =>el.Name.includes(name) || el.Phone.includes(phone) )
     container.innerHTML = "";
-    contactsDisplayed.forEach(element => container.appendChild(createContactView(element)))
+    contactsDisplayed
+    .filter(el => (name !== '' && el.Name.includes(name)) || (phone !== '' && el.Phone.includes(phone)))
+    .forEach(element => container.appendChild(createContactView(element)))
 }
 
 async function fetchContacts() {
