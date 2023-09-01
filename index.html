@@ -13,13 +13,14 @@
 
         <div id="agendaTitle"> Agenda telefonica </div>
 
-        <div id="contactForm">
-            <input type="text" name="" id="Name" placeholder="Name">
-            <input type="tel" name="" id="Phone" placeholder="Phone">
-            <input type="text" name="" id="Description" placeholder="Description">
-            <button id="addContactBtn"> Add contact </button>
+        <form id="contactForm">
+            <input type="text" id="Name" placeholder="Name">
+            <input type="text" id="Phone" placeholder="Phone">
+            <input type="text" id="Description" placeholder="Description">
+            <input type="file" id="Image" accept="image/*">
+            <button type="button" id="addContactBtn">Add Contact</button>
             <button id="searchContactBtn"> Search contact </button>
-        </div>
+          </form>
     
         <table id="container">
             <tr> <th> Nume Contact </th> <th> Numar de telefon </th> </tr>
