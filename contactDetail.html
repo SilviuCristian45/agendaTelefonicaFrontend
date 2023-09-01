@@ -35,10 +35,16 @@
             const description = document.createElement('div')
             description.id = 'Description'
             description.innerHTML = '<i class="fa-solid fa-file-lines"></i> ' + contact.Description
+           
+            const contactImageElement = document.createElement('img')
+            contactImageElement.src = contact.Image
+            contactImageElement.width = 300
+            contactImageElement.height = 300
 
             contactDetailContainer.appendChild(name)
             contactDetailContainer.appendChild(phone)
             contactDetailContainer.appendChild(description)
+            contactDetailContainer.appendChild(contactImageElement)
         }
     </script>
 </body>
